@@ -76,12 +76,13 @@ String entropyToMnemonic(String entropyString) {
   String words = chunks.map((binary) => wordlist[_binaryToByte(binary)]).join(' ');
   return words;
 }
-Uint8List mnemonicToSeed(String mnemonic) {
-  final pbkdf2 = new PBKDF2();
+Uint8List mnemonicToSeed(String mnemonic, int desiredKeyLength) {
+  final Map config = {'desiredKeyLength': desiredKeyLength};
+  final pbkdf2 = new PBKDF2(config);
   return pbkdf2.process(mnemonic);
 }
-String mnemonicToSeedHex(String mnemonic) {
-  return mnemonicToSeed(mnemonic).map((byte) {
+String mnemonicToSeedHex(String mnemonic, int seedLength) {
+  return mnemonicToSeed(mnemonic, seedLength).map((byte) {
     return byte.toRadixString(16).padLeft(2, '0');
   }).join('');
 }
