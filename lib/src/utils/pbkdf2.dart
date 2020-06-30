@@ -13,7 +13,7 @@ class PBKDF2 {
   PBKDF2KeyDerivator _derivator;
   Uint8List _salt;
 
-  PBKDF2(Map config {this.blockLength = 128,
+  PBKDF2(Object config = {this.blockLength = 128,
           this.iterationCount = 2048,
           this.desiredKeyLength = 64,
           String salt = "mnemonic"}) {
