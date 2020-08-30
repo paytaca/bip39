@@ -77,8 +77,8 @@ String entropyToMnemonic(String entropyString) {
   return words;
 }
 Uint8List mnemonicToSeed(String mnemonic, int desiredKeyLength) {
-  final Map config = {'desiredKeyLength': desiredKeyLength};
-  final pbkdf2 = new PBKDF2(config);
+  //final Map config = {'desiredKeyLength': desiredKeyLength};
+  final pbkdf2 = new PBKDF2(desiredKeyLength: desiredKeyLength);
   return pbkdf2.process(mnemonic);
 }
 String mnemonicToSeedHex(String mnemonic, int seedLength) {
